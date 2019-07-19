@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .edit{
+            height: 30px;
+            border-bottom: 1px solid red;
+            padding: 10px 50px;
+        }
+        .btn{
+            width: 50px;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        input{
+            display: none;
+            
+        }
+        #wrap .edit.hidden span{
+            display: none;
+        }
+        #wrap .edit.hidden input{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="edit">
+            <span class="txt">点击修改 </span>
+            <input type="text" >
+            <button class="btn">修改</button>
+        </div>
+        <div class="edit">
+            <span class="txt">点击修改 </span>
+            <input type="text">
+            <button class="btn">修改</button>
+        </div>
+        <div class="edit">
+            <span class="txt">点击修改 </span>
+            <input type="text">
+            <button class="btn">修改</button>
+        </div>
+        <div class="edit">
+            <span class="txt">点击修改 </span>
+            <input type="text">
+            <button class="btn">修改</button>
+        </div>    
+    </div>
+    <script>
+        var aSpan = document.querySelectorAll(".txt"),
+            oEdit = document.querySelectorAll(".edit"),
+            aInput = document.querySelectorAll("input"),
+            aBtn = document.querySelectorAll(".btn");
+        for (let i=0,len=aSpan.length;i<len;i++){
+            aBtn[i].bool = true;
+            aBtn[i].onclick = function(){
+                change(i,aBtn[i].bool)  
+            }
+        }
+
+        function change(index,bool){      
+            !bool && (aSpan[index].innerHTML = aInput[index].value);
+            aBtn[index].innerHTML = bool? "确认":"修改"
+            oEdit[index].classList.toggle("hidden");
+            aBtn[index].bool = !aBtn[index].bool 
+
+        }
+        
+    </script>
+</body>
+</html>

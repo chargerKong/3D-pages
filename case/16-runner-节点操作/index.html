@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        body {
+            background: linear-gradient(#F9A886, #8CC1DE)
+        }
+
+        #wrap {
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
+
+        }
+
+        .box {
+            float: left;
+            width: 360px;
+            height: 600px;
+            padding: 60px 20px;
+        }
+
+        #left {
+            background-color: white;
+
+        }
+
+        #right {
+            background-color: rgba(20, 22, 18, 0.3);
+        }
+
+
+        a:hover {
+            color: red;
+            cursor: pointer;
+        }
+
+        .reChange {
+            margin: 10px 0
+        }
+
+        #left .reChange ul li span {
+            border-right: 1px solid #ccc;
+            padding: 0px 3px;
+        }
+
+        #left .reChange ul li i:hover {
+            color: red;
+            cursor: pointer;
+        }
+
+        #right .reChange ul li {
+            color: white;
+            border-color: white
+        }
+
+        ul li {
+            float: left;
+            padding: 5px 8px 5px 5px;
+            border: 1px solid #ccc;
+            list-style: none;
+            color: #ccc;
+            margin: 0 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id=wrap>
+        <div id="left" class="box">
+            热门目的地：
+            <a>马来西亚</a>
+            <a>泰国</a>
+            <a>三亚</a>
+            <a>新西兰</a>
+            <a>云南</a>
+            <div class="reChange">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+
+        <div id="right" class="box">
+            <div class="reChange">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let aLeftChange = document.querySelector("#left .reChange ul"),
+            aRightChange = document.querySelector("#right .reChange ul"),
+            aSpan = document.querySelectorAll("a"),
+            button=[],
+            cacheLeft=[],
+            cacheRight=[];
+        aSpan.forEach(function (item, index) {
+            item.onclick = function(){
+                createEle.call(this,index)
+            }
+        })
+
+        function createEle(index){
+            if (button[index]) return
+            if (cacheLeft[index]){
+                aLeftChange.appendChild(cacheLeft[index])
+                aRightChange.appendChild(cacheRight[index])
+            }else{
+                button[index] = true;
+            let lileft = document.createElement("li"),
+                span = document.createElement(`span`),
+                liright = document.createElement("li"),
+                span1 = document.createElement(`span`);
+                i = document.createElement("i");
+            
+            span.innerText = this.innerText;
+            span1.innerText = this.innerText;
+            (function(){
+                
+                i.innerText = "x";
+                i.onclick = function(){
+                    button[index] = false;
+                    aLeftChange.removeChild(lileft);
+                    aRightChange.removeChild(liright);
+                }
+                lileft.appendChild(span);
+                lileft.appendChild(i);
+                cacheLeft[index] = lileft;
+                aLeftChange.appendChild(lileft);
+            })();
+            
+
+            (function(){
+                liright.appendChild(span1);
+                cacheRight[index]=liright
+                aRightChange.appendChild(liright);
+            })()
+
+            }
+
+         
+            
+            
+        }
+    </script>
+</body>
+
+</html>

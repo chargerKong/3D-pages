@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0px;}
+        body{background-color: rgb(255, 192, 203);width: 100%}
+        
+        #up{
+            position: absolute;right: 0;
+            top: 185px;
+            background-color: black;
+            padding-bottom: 10px;
+            z-index: 1 ;
+        }
+        #rightAside{
+            transition:0.5s;
+            height:625px;
+            padding:250px 0;
+            width: 35px;
+            background-color: black;
+            position: fixed;
+            right:-35px;;}
+        ul{list-style: none;}
+        ul li{
+            color: white;
+            margin-top: 5px;
+            height: 35px;
+            width: 35px;
+            cursor: pointer;
+            position: relative;
+        } 
+        ul#down li:first-child{bottom: 110px;}
+        ul#up {width: 35px;height: 90px;}
+        ul#up:hover{background-color: red;cursor: pointer;}
+        .pic{background: url('./images/7.png'); }
+        ul#up:hover .pic{background: url('./images/9.png');}
+        ul#down li:hover{background-color: red}
+        p{
+            width: 20px;
+            margin: 0 auto;
+            font-size: 13px;
+            text-align: center;
+            color: white;
+            }  
+        #up:hover + #rightAside{right: 0px;}
+        #rightAside:hover{right: 0px;}
+        .txt{
+            transition:0.2s;
+            position: relative;
+            width: 60px;
+            padding:12px 10px;
+            left: -100px;
+            font-size: 13px;
+            top:-40px;
+            background-color: #444;
+            opacity: 0;
+        }
+        li:hover .txt{
+            opacity: 1;
+            left: -80px;
+        }
+
+        li .txt::after{
+            position: absolute;
+            right: -14px;
+            width: 0px;
+            height: 0px;
+            border: 7px solid transparent;
+            border-left-color: #444 ;
+            content: "";
+            
+        }
+    </style>
+</head>
+<body>  
+          
+    <aside >
+            
+        <ul id="up">
+            <li class="pic"></li>
+            <p>购物车</p>
+        </ul>
+            
+        <div id="rightAside">
+            <ul id='down'>
+                <li><img src="./images/8.png" alt=""><div class="txt">会员权益</div></li>
+                <li><img src="./images/6.png" alt=""><div class="txt">我的资金</div></li>
+                <li><img src="./images/3.png" alt=""><div class="txt">我的收藏</div></li>
+                <li><img src="./images/4.png" alt=""><div class="txt">我看过的</div></li>
+                <li><img src="./images/5.png" alt=""><div class="txt">我要首充</div></li>
+            </ul>
+        </div>
+    </aside>
+
+
+</body>
+</html>

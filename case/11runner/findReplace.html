@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            width: 600px;
+            margin: 50px auto;
+            border: 1px solid #bbb;
+            border-radius: 20px;
+            padding-top: 30px;
+        }
+
+        #wrap #head {
+            width: 95%;
+            margin: 0 auto;
+
+        }
+
+        #wrap #head input[type=text] {
+            height: 36px;
+            width: 180px;
+            margin: 0 5px;
+            text-indent: 5px;
+        }
+
+        #wrap #head input[type=button] {
+            height: 40px;
+            width: 50px;
+        }
+
+        #wrap #content {
+            width: 95%;
+            margin: 0 auto;
+            height: 280px;
+
+
+        }
+
+        #wrap #content p {
+            text-indent: 2em;
+            font-size: 15px;
+            line-height: 25px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="head">
+            <input type="text" placeholder="搜索内容">
+            <input type="button" value="搜素">
+            <input type="text" placeholder="替换内容">
+            <input type="button" value="替换">
+            <input type="button" value="重置">
+        </div>
+        <div id="content">
+            <p>张家界是湖南省辖地级市，原名大庸市，辖2个市辖区（永定区、武陵源区）、2个县（慈利县、桑植县）。位于湖南西北部，澧水中上游，属武陵山区腹地。[1]
+                张家界因旅游建市，是中国最重要的旅游城市之一，是湘鄂渝黔革命根据地的发源地和中心区域。</p>
+            <p>1982年9月，张家界国家森林公园成为中国第一个国家森林公园。</p>
+            <p>1988年8月，张家界武陵源风景名胜区被列入国家重点风景名胜区；1992年，由张家界国家森林公园等三大景区构成的武陵源风景名胜区被联合国教科文组织列入《世界自然遗产名录》；2004年2月，被列入全球首批《世界地质公园》；2007年，被列入中国首批国家5A级旅游景区。[2]
+            </p>
+        </div>
+
+    </div>
+
+
+    <script>
+        var aInp = document.querySelectorAll("input[type=text]"),
+            aBtn = document.querySelectorAll("input[type=button]"),
+            aP = '',
+            num = [];
+
+        aBtn[0].onclick = function () {
+            aP = document.querySelectorAll("p");
+            var content = '';
+            //获取文字的内容
+            aP.forEach(function (item, index) {
+                content += item.innerText;
+            })
+            var lenContent = content.length;
+            //获取要搜索的值
+            var searchText = aInp[0].value,
+                lenSearch = searchText.length;
+            //每一次点搜索都要把num 设为[];
+            num = [];
+            //利用indexof找到有被寻找值的所有开始位置
+            for (var j = 0; j < lenContent - lenSearch; j++) {
+                j = content.indexOf(searchText, j)
+                if (j === -1) break;
+                num.push(j);
+            }
+            searchHTML = '<span style="color:red">' + searchText + "</span>"
+            replaceP(searchHTML, lenSearch)
+        }
+
+        aBtn[1].onclick = function () {
+            var beSlice = aInp[1].value,
+                lenSearch = beSlice.length;
+            beSlice = '<span style="color:red">' + beSlice + "</span>";
+            replaceP(beSlice, lenSearch)
+        }
+
+        aBtn[2].onclick = function () {
+            aInp.forEach(function (item, index) {
+                aInp[index].value = '';
+            })
+            num = [];
+        }
+
+        function replaceP(beSlice, lenSearch) {
+            //复制一个新的记数的数组。为了替换的时候也可以调用。
+            var numtemp = num.concat();
+            aP.forEach(function (item, index) {
+                //字符串只读，转化为数组来处理
+                var conList = aP[index].innerText.split("");
+                //foreach不好break，用for代替
+                for (var i = 0; numtemp[0] < aP[index].innerText.length; i++) {
+                    conList.splice(numtemp[0] - i * (lenSearch - 1), lenSearch, beSlice);
+                    //因为下一段循环i也要从0 开始，所以用过的序号就不要了。
+                    numtemp.shift();
+                }
+                numtemp.forEach(function(item,i){
+                    //把原来记录的位置减去这一段的长度，为了方便下一段寻找
+                    numtemp[i] -= aP[index].innerText.length
+                })
+
+                //转回字符串放入段落中
+                aP[index].innerHTML = conList.join("");
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

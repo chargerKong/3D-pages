@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .mydiv {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: brown;
+            background: radial-gradient(#fff, #ff666d);
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        #shadow p{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(#fff, #ff666d);
+            border-radius: 50%;
+            transform: scale(1);
+            opacity: 0.7;
+            animation: hide 1s;
+            
+        }
+
+        @keyframes hide {
+            0%{
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100%{
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mydiv">
+
+    </div>
+    <div id="shadow"></div>
+    <script>
+        let odiv = document.querySelector(".mydiv"),
+            oShadow = document.getElementById("shadow"),
+            Top = odiv.offsetTop,
+            left = odiv.offsetLeft,
+            isUp = true,
+            isLeft = true,
+            speed = 5;
+
+
+        window.onresize = function x() {
+            height = document.documentElement.clientHeight,
+                width = document.documentElement.clientWidth;
+            //事件函数里面的return没事的，没人接受的
+            return x
+        }()
+
+        function move() {
+
+            [left, isLeft] = rejust(left, width, isLeft);
+            [Top, isUp] = rejust(Top, height, isUp)
+            Top = isUp ? Top - speed : Top + speed;
+            left = isLeft ? left - speed : left + speed;
+            odiv.style.top = Top + 'px';
+            odiv.style.left = left + 'px';
+            
+
+            let oP = document.createElement("p");
+                oP.style.left = left + 'px';
+                oP.style.top = Top + 'px';
+                oShadow.appendChild(oP);
+                setTimeout(()=>{
+                    oShadow.removeChild(oP);
+                },500);
+            requestAnimationFrame(move)
+
+        }
+
+        function rejust(x, pro, bool) {
+            if (x < 0) {
+                x = 0;
+                bool=!bool
+            } else if (x > pro - 50) {
+                x = pro - 50;
+                bool=!bool
+            }
+            return [x, bool]
+        }
+        requestAnimationFrame(move)
+
+    </script>
+</body>
+
+</html>

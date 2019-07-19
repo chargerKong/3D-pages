@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap{
+            height: 200px; 
+            width: 200px;
+            position: relative;
+        }
+        .first{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: rgb(255,192,203);
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            top: 25%;
+            left: 25%;
+            cursor: pointer;
+            transform: scale(1);
+            transition: 0.5s;
+        }
+
+        .second li {
+            list-style: none;
+            background-color: rgb(127, 133, 127);
+            height: 90px;
+            width:90px;
+            border-radius: 50%;
+            float: left;
+            text-align: center;
+            line-height: 90px;
+            cursor: pointer;
+            position: absolute;
+            transform: scale(0);
+            transition: 0.5s ;
+        }
+
+        .second li:nth-child(1){
+            left: 0px;
+            top: 0px;
+        }
+        .second li:nth-child(2){
+            right: 0px;
+            top: 0px;
+        }
+
+        .second li:nth-child(3){
+            left: 0px;
+            bottom: 0px;
+        }
+
+        .second li:nth-child(4){
+            right:0px;
+            bottom: 0px;
+        }
+        .hidden{
+            transform: scale(0);
+        }
+
+        .second.show li{
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="first">
+            菜单
+        </div>
+        <div class="second">
+            <li>首页</li>
+            <li>文章</li>
+            <li>登录</li>
+            <li>注册</li>
+        </div>
+    </div>
+
+    <script>
+        var owarp = document.getElementById("wrap"),
+            ofirst = document.querySelector(".first"),
+            osecond = document.querySelector(".second")
+        owarp.onclick=function(){
+            ofirst.classList.add("hidden");
+            osecond.classList.add("show");
+        }
+    </script>
+</body>
+</html>

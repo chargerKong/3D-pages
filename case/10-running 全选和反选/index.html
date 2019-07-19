@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            
+        }
+        body{
+            user-select: none;
+        }
+        #wrap {
+            margin: 50px auto;
+            width: 300px;
+            height: 420px;
+            border: 1px solid rgb(187, 187, 187);
+            border-radius: 30px;
+            padding: 30px 0;
+        }
+
+        ul li {
+            list-style: none;
+            height: 50px;
+            color: #fff;
+            line-height: 50px;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        ul li i {
+            margin-right: 20px;
+        }
+
+        i {
+            background: url('img/ckbg1.jpg') no-repeat;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            position: relative;
+            top: 5px;
+            cursor: pointer;
+        }
+
+        #btn {
+            padding: 10px 50px;
+        }
+
+        span {
+            margin-left: 50px;
+            cursor: pointer;
+        }
+
+        i.show,
+        #selectAll.show i {
+            background: url('img/ckbg2.jpg') no-repeat;
+        }
+
+        #selectAll {
+            width: 60px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <ul>
+            <li><i></i>朱雀</li>
+            <li><i></i>心爱</li>
+            <li><i></i>发发</li>
+            <li><i></i>七七</li>
+            <li><i></i>啦啦</li>
+            <li><i></i>丫丫</li>
+            <li><i></i>看看</li>
+            <li><i></i>力扣</li>
+        </ul>
+        <div id="btn">
+            <div id="selectAll"><i></i>全选</div>
+            <span id="selectReverse"><i></i>反选</span>
+        </div>
+
+    </div>
+    <script>
+        // (function(){
+        var aI = document.querySelectorAll("#wrap ul li i"),
+            aLi = document.querySelectorAll("#wrap ul li"),
+            oAllSlc = document.getElementById("selectAll"),
+            oSRvse = document.getElementById("selectReverse"),
+            num = 0,
+            colorList = ['rgb(34,34,34)', 'rgb(85,85,85)', 'rgb(136,136,136)', 'rgb(187,187,187)'];
+        cLlen = colorList.length;
+        for (var i = 0, len = aLi.length; i < len; i++) {
+            aLi[i].style.backgroundColor = colorList[i % cLlen];
+            (function (i) {
+                aLi[i].onclick = function () {
+                    aI[i].classList.toggle('show')
+                    // if (aI[i].classList.contains('show')){
+                    //     num++
+                    // }else{
+                    //     num--
+                    // }
+                    aI[i].classList.contains('show')?num++:num--
+                    // if (num===8){
+                    //     oAllSlc.classList.toggle('show')
+                    // }
+                    num===8 && oAllSlc.classList.toggle('show')
+                }
+            })(i)
+        }
+
+
+        //反选
+        oSRvse.onclick = function () {
+            for (var i = 0, len = aLi.length; i < len; i++) {
+                aI[i].classList.toggle('show')
+            }
+        }
+
+        //全选
+        oAllSlc.onclick = function () {
+            oAllSlc.classList.toggle('show')
+            // if (oAllSlc.classList.contains('show')) {
+            //     for (var i = 0, len = aLi.length; i < len; i++) {
+            //         aI[i].classList.add('show')
+            //     }
+            // } else {
+            //     for (var i = 0, len = aLi.length; i < len; i++) {
+            //         aI[i].classList.remove('show')
+            //     }
+            // }
+            var bool = oAllSlc.classList.contains('show');
+            for (var i = 0, len = aLi.length; i < len; i++) {
+                aI[i].classList[bool?'add':'remove']('show')
+            }
+
+        }
+
+
+
+        // })()
+    </script>
+</body>
+
+</html>

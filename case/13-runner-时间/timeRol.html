@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    .wrap{
+        width: 450px;
+        margin: 20px auto;
+        height: 60px;
+        /* border: 1px solid red; */
+        overflow: hidden;
+    }
+    .two{
+        width: 40px;
+        height: 120px;
+        float: left;
+        margin: 0 2px;
+     
+    }
+    
+    .bg{
+        width: 40px;
+        height: 60px;
+        background: linear-gradient(rgb(68,68,68) 50%,rgb(58,58,58) 50%);
+        /* border: 1px solid red; */
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 30px;
+        color: white;
+        line-height: 60px;
+        text-align: center;
+        
+    }
+
+    span{
+        width: 30px;
+        height: 120px;
+        font-size: 40px;
+        line-height: 60px;
+        float: left;
+        text-align: center;
+        /* border: 1px solid red */
+    }
+    .change{
+        transition: margin-top .5s;
+    }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="two"> 
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+        <div class="two">  
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+        <span>:</span>
+        <div class="two"> 
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+        <div class="two"> 
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+        <span>:</span>
+        <div class="two"> 
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+        <div class="two"> 
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
+    </div>
+    <script>
+        var aTime = document.querySelectorAll(".bg"),
+            aTwo = document.querySelectorAll(".two")
+            timeList = [];
+
+        function timer(){
+            var time = new Date();
+            housr = time.getHours();
+            minite = time.getMinutes();
+            second = time.getSeconds();
+            second = judLZ(second);
+            minite = judLZ(minite);
+            housr = judLZ(housr);
+            
+            timeList1 = timeList.concat(housr,minite,second)
+            
+            timeList1.forEach(function(item,index){
+                if (aTime[2*index].innerText != item && aTime[2*index].innerText!=''){
+                    aTwo[index].classList.add("change")
+                    aTwo[index].style.marginTop = -60+'px';
+                    setTimeout(function(){
+                        aTwo[index].classList.remove("change")
+                        aTwo[index].style.marginTop = 0 +"px";
+                        aTime[2*index].innerText = item
+                    },500)
+                }else{
+                    aTime[2*index].innerText = item
+                }
+                aTime[2*index+1].innerText = item
+                
+            })
+            return timer
+        }
+        
+        function judLZ(time){
+            if (time <10){
+                time = "0"+time;
+            }
+            return String(time).split("")
+        }
+        
+        setInterval(timer(),1000)
+    </script>
+</body>
+</html>

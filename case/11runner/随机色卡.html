@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            float: left;
+            width: 150px;
+            height: 25px;
+            text-align: center;
+            margin: 10px 10px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mydiv">
+
+    </div>
+    <script>
+        var oMy = document.querySelector("#mydiv");
+
+        setInterval(addHTML, 1000);
+
+        function addHTML() {
+            var R = Math.round(Math.random() * 255),
+                G = Math.round(Math.random() * 255),
+                B = Math.round(Math.random() * 255),
+                RGB = "rgb(" + R + "," + G + "," + B + ")";
+            oMy.innerHTML += "<span style='background-color:" + RGB + "'>" + RGB + "<span>"
+        }
+
+    </script>
+</body>
+
+</html>

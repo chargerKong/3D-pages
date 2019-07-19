@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            width: 90px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            border: 1px solid greenyellow;
+            display: inline-block;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    
+    <script>
+        var oWrap = document.getElementById("wrap"),
+            HTML = "";
+        for( var i=1 ;i<10;i++){
+            for (var j=1; j<=i; j++){
+                HTML+="<span>"+ j+"*"+i+"="+i*j+"</span>"
+            }
+            HTML+="<br>"
+        }
+        HTML+="<hr><hr>";
+
+        for( var i=1 ;i<10;i++){
+            left=97*(9-i);
+            HTML+=" <span style='margin-left:"+left+"px'>1*"+i+"="+i+"</span>"
+            for (var j=2; j<=i; j++){
+                HTML+="<span>"+ j+"*"+i+"="+i*j+"</span>"
+            }
+            HTML+="<br>"
+        }
+        HTML+="<hr><hr>";
+
+        for( var i=9 ;i>0;i--){
+            for (var j=1; j<=i; j++){
+                HTML+="<span>"+ j+"*"+i+"="+i*j+"</span>"
+            }
+            HTML+="<br>"
+        }
+        HTML+="<hr><hr>";
+
+        for( var i=9 ;i>0;i--){
+            left=97*(9-i);
+            HTML+=" <span style='margin-left:"+left+"px'>1*"+i+"="+i+"</span>"
+            for (var j=2; j<=i; j++){
+                HTML+="<span>"+ j+"*"+i+"="+i*j+"</span>"
+            }
+            HTML+="<br>"
+        }
+        
+        oWrap.innerHTML = HTML;
+
+        
+
+    </script>
+</body>
+</html>

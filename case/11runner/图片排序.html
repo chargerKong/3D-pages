@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        #content {
+            width: 960px;
+            height: 625px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+        }
+
+        .stuff {
+            width: 90%;
+            height: 80%;
+            margin: 40px auto 10px;
+        }
+
+        .btn {
+            width: 90%;
+            height: 10%;
+            margin: 0 auto;
+            padding: 20px 20px;
+        }
+
+        .btn input[type=button] {
+            background-color: rgb(255, 102, 0);
+            padding: 12px 20px;
+            border: none;
+            float: right;
+            margin-right: 10px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .stuff ul li {
+            float: left;
+            width: 207px;
+            height: 230px;
+            list-style: none;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        .stuff ul li img {
+            width: 207px;
+            height: 200px;
+        }
+
+        p {
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        span {
+
+            float: right;
+            /* display: block; */
+            width: 50px;
+            height: 50px;
+            background-image: url("images/price.png");
+            position: relative;
+            bottom: 25px;
+            line-height: 50px;
+            color: white;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="stuff">
+            <ul>
+               
+            </ul>
+        </div>
+        <div class="btn">
+
+            <input type="button" value="从低到高">
+            <input type="button" value="从高到低">
+            <input type="button" value="随机排序">
+        </div>
+
+    </div>
+
+    <script>
+        var goods = [
+            { src: "images/xh_img1.jpg", price: 100, content: '深红色经典玫瑰' },
+            { src: "images/xh_img2.jpg", price: 999, content: '甜美七分袖荷叶边条纹设' },
+            { src: "images/xh_img3.jpg", price: 556, content: '紫色冷艳系列' },
+            { src: "images/xh_img4.jpg", price: 300, content: '深红色经典玫瑰' },
+            { src: "images/xh_img5.jpg", price: 200, content: '粉色浪漫系列玫瑰' },
+            { src: "images/xh_img6.jpg", price: 521, content: '深红色经典玫瑰' },
+            { src: "images/xh_img7.jpg", price: 97, content: '清淡优雅百年百合' },
+            { src: "images/xh_img8.jpg", price: 230, content: '甜美七分袖荷叶边条纹设' }
+        ];
+        var oUl = document.querySelector(".stuff ul"),
+            aBtn = document.querySelectorAll("input");
+
+        paifang()
+
+        var arr = [
+            (function (a, b) {return (a.price - b.price)}),
+            (function (a, b) {return (b.price - a.price)}),
+            (function (a, b) {return (Math.random()>.5 ? -1 : 1)}),
+
+        ]
+        aBtn.forEach(function(item,index){
+            item.onclick = function(){
+                goods.sort(arr[index])
+                paifang(goods)
+            }
+
+        })
+
+
+        // aBtn[1].onclick = function () {
+        //     goods.sort(function (a, b) {
+        //         return (b.price - a.price)
+        //     })
+        //     paifang(goods)
+        // }
+
+        // aBtn[0].onclick = function () {
+        //     goods.sort(function (a, b) {
+        //         return (a.price - b.price)
+        //     })
+        //     paifang(goods)
+        // }
+
+        // aBtn[2].onclick = function () {
+        //     goods.sort(function () {
+        //         return (Math.random()>.5 ? -1 : 1)
+        //     })  
+        //     paifang(goods)
+        // }
+
+
+        function paifang() {
+            var liHTML = '';
+            goods.forEach(function (item, index) {
+                liHTML += "<li><img src ='" + item.src + "'>";
+                liHTML += "<p>" + item.content + "</p>";
+                liHTML += "<span>￥" + item.price + "</span></li>"
+            })
+            oUl.innerHTML = liHTML;
+        }
+
+        
+    </script>
+</body>
+
+</html>

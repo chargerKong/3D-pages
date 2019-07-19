@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 50px;
+            height: 62px;
+            background-image: url('down.png');
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+
+    <script>
+        let odiv = document.getElementById("div"),
+            Top = 100,
+            left = 100,
+            temp = 0;
+
+        document.onkeydown = function (e) {
+            let downPress = e.keyCode === 83 || e.keyCode === 40,
+                upPress = e.keyCode === 87 || e.keyCode === 38,
+                rightPress = e.keyCode === 68 || e.keyCode === 39,
+                leftPress = e.keyCode === 65 || e.keyCode === 37;
+
+            let bool = [downPress, upPress, rightPress, leftPress],
+                nowDir = bool.indexOf(true);
+
+            //如果方向改变则换图。
+            if (temp != nowDir) {
+                switch (nowDir) {
+                    case 0:
+                        odiv.style.backgroundImage = "url('down.png')";
+                        break;
+                    case 1:
+                        odiv.style.backgroundImage = "url('up.png')";
+                        break;
+                    case 2:
+                        odiv.style.backgroundImage = "url('right.png')";
+                        break;
+                    case 3:
+                        odiv.style.backgroundImage = "url('left.png')";
+                        break;
+                }
+
+            }
+
+            if (downPress || upPress) {
+                Top = Top + (downPress ? 2 : -2);
+                odiv.style.top = Top + 'px';
+            }
+
+            if (leftPress || rightPress) {
+                left = left + (rightPress ? 2 : -2);
+                odiv.style.left = left + 'px';
+            }
+            
+            temp = nowDir;
+
+        }
+    </script>
+</body>
+
+</html>

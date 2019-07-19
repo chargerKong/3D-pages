@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         
+        .mydiv{
+            width: 200px;
+            height: 100px;
+            background-color:#ccc;
+            margin:20px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mydiv"></div>
+    <div class="mydiv"></div>
+    <script>
+        div = document.getElementsByClassName("mydiv")
+        inTxt = "这里忘记填写什么字了"
+        
+        div[0].onmouseenter = function(){
+            div[1].innerHTML = inTxt;
+        }
+
+        div[0].onmouseleave = function(){
+            div[1].innerHTML = "";
+        }
+
+        div[1].onmouseenter = function(){
+            div[0].innerHTML = inTxt;
+        }
+
+        div[1].onmouseleave = function(){
+            div[0].innerHTML = "";
+        }
+
+    </script>
+</body>
+</html>

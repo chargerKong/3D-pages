@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#imgContent{
+			width: 4200px;
+			height: 340px;
+			transition: 0.5s;
+			position: relative;
+		}
+		#imgContent img	{		
+			float: left;
+		}
+		#main{
+			width: 820px;
+			overflow: hidden;
+			margin: 20px auto;
+			position: relative;
+			
+		}
+		#btn{
+			height: 42px;
+			background-color: #e3e2e2;
+		}
+		#btn span{
+			display: inline-block;
+			font-family: Tahoma, Geneva, Verdana, sans-serif;
+			width: 164px;
+			height: 40px;
+			text-align: center;
+			line-height: 42px;
+			color: #422442;
+			font-size: 14px;
+			
+		}
+		.show{
+			background-color: rgb(246, 246, 246);
+			color: #ab8e66;
+			border-bottom: 2px solid #cea861;
+		}
+		.tabBtn{
+			width: 30px;
+			height: 50px;
+			background-color: rgba(246,	246, 246,0.8);
+			text-align: center;
+			line-height: 50px;
+			position: absolute;
+			top: 40%;
+			cursor: pointer;
+			transition: 0.2s;
+		}
+		#leftBtn{left: 0}
+		#rightBtn{right: 0;}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div id="imgContent">
+			<img src="https://ossweb-img.qq.com/upload/adw/image/20190513/63ef070b8e503a394b99be2313c3a4d3.jpg" alt="">
+			<img src="https://ossweb-img.qq.com/upload/adw/image/20190510/e4761e58d3cfc8e1008cfe25b6d8f25d.jpg" alt="">
+			<img src="https://ossweb-img.qq.com/upload/adw/image/20190510/9e3b41088245ea105cf7713c287513bb.jpg" alt="">
+			<img src="https://ossweb-img.qq.com/upload/adw/image/20190514/7cd9e8c261b6044a1fd0cdc83c2c5d4b.jpg" alt="">
+			<img src="https://ossweb-img.qq.com/upload/adw/image/20190510/90264e83647f9a71765280619478a968.jpg" alt="">
+			
+		</div>
+
+		<div id="btn">
+			<span class="show">季中英雄之礼</span><span>战斗学院全新上线</span><span>试炼2019门票</span><span>冠军限定皮肤</span><span>IG冠军手办预定</span>
+		</div>
+
+		<div>
+			<div class="tabBtn" id="leftBtn"><</div>
+			<div class="tabBtn" id="rightBtn">></div>
+		</div>
+	</div>
+
+	<script>
+		var aBtn = document.querySelectorAll('#btn span'),
+			aImg = document.querySelectorAll('#main #imgContent img'),
+			oimgC = document.querySelector("#imgContent"),
+			aTabBtn = document.querySelectorAll(".tabBtn");
+		oimgC.style.left = 0;
+		//鼠标移入文字图片切换
+		for (var i=0,len=aBtn.length; i<len; i++){
+			aBtn[i].index = i;
+			aBtn[i].onmouseenter = function(){
+				for (var j=0;j<len;j++){
+					aBtn[j].classList.remove("show")	
+				}
+				oimgC.style.left=-820*(this.index )+"px";
+				this.classList.add("show")
+			}
+		}
+		//鼠标点击左右两侧图片切换
+		for (i=0,lens=aTabBtn.length;i<lens;i++){
+			aTabBtn[i].onmouseenter = function(){
+				this.style.opacity = 0.5;
+			}
+
+			aTabBtn[i].onmouseleave = function(){
+				this.style.opacity = 0.8;
+			}
+
+			aTabBtn[i].index = i;
+			aTabBtn[i].onclick = function(){
+				move(this.index);
+			}
+		}
+
+		function move(index){
+			var posLeft = parseInt(oimgC.style.left);
+			if (index==0){
+				posLeft = posLeft==0?-4100:posLeft;		
+				oimgC.style.left = (posLeft+820)+'px';
+				var num = (-posLeft/820)-1;
+				num1 = num==4?0:num+1;
+			}else{
+				posLeft = posLeft==-3280?820:posLeft;		
+				oimgC.style.left = (posLeft-820)+'px';
+				var num = (-posLeft/820)+1;
+				num1 = num==0?4:num-1;
+			}
+			//num 为新的需要添加的下标记。num1是需要移除的下标
+			aBtn[num].classList.add("show");
+			aBtn[num1].classList.remove("show");
+
+		}
+		
+	</script>
+</body>
+</html>
