@@ -17,22 +17,22 @@
 
 打开主页，随机方块移动
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\1.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/1.png)
 
 
 
 分别展示各种形态
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\2.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/2.png)
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\3.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/\img/3.png)
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\4.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/4.png)
 
 ###可点击每一个方格查看具体小案例，例如碰撞小球
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\5.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/5.png)
 
 进入页面 ，可点击back返回
 
-![](C:\Users\chargerKong\Documents\GitHub\3D-pages\img\7.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/7.png)
