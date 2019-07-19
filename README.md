@@ -25,7 +25,7 @@
 
 ![](https://github.com/chargerKong/3D-pages/blob/master/img/2.png)
 
-![](https://github.com/chargerKong/3D-pages/blob/master/\img/3.png)
+![](https://github.com/chargerKong/3D-pages/blob/master/img/3.png)
 
 ![](https://github.com/chargerKong/3D-pages/blob/master/img/4.png)
 
